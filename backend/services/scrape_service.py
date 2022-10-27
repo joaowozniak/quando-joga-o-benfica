@@ -1,13 +1,14 @@
 from bs4 import BeautifulSoup
-from utils.utils import Utils
-from models.fixture import Fixture
+from backend.utils.utils import Utils
+from backend.models.fixture import Fixture
+from backend.utils.contants import Constants
 
 
 class ScrapeService:
 
     @staticmethod
-    def scrape_next_match_page(url: str):
-        url = "https://www.slbenfica.pt/pt-pt/jogos/calendario"
+    def scrape_next_match_page():
+        url = Constants.CALENDER_ENDPOINT
         page_html = Utils.execute_get_request(url).text
         soup = BeautifulSoup(page_html, "lxml")
         fixture = Fixture(None, None, None, None, None, None, None)
